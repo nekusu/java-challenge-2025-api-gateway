@@ -23,6 +23,8 @@ public class GatewayConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
+                .route("users-service", r -> r.path("/users/**")
+                        .uri("lb://users-service"))
                 .route("users-service", r -> r.path("/api/auth/**")
                         .uri("lb://users-service"))
                 .route("users-service", r -> r.path("/api/users/self")
@@ -32,6 +34,8 @@ public class GatewayConfig {
                         .filters(f -> f.filter(jwtAuthenticationFilter)
                                 .filter(adminAccessFilter(List.of(HttpMethod.GET))))
                         .uri("lb://users-service"))
+                .route("sale-points-service", r -> r.path("/sale-points/**")
+                        .uri("lb://sale-points-service"))
                 .route("sale-points-service", r -> r.path("/api/sale-points/**")
                         .filters(f -> f.filter(jwtAuthenticationFilter)
                                 .filter(adminAccessFilter(List.of(HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE))))
@@ -40,6 +44,8 @@ public class GatewayConfig {
                         .filters(f -> f.filter(jwtAuthenticationFilter)
                                 .filter(adminAccessFilter(List.of(HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE))))
                         .uri("lb://sale-points-service"))
+                .route("accreditations-service", r -> r.path("/accreditations/**")
+                        .uri("lb://accreditations-service"))
                 .route("accreditations-service", r -> r.path("/api/accreditations/**")
                         .filters(f -> f.filter(jwtAuthenticationFilter))
                         .uri("lb://accreditations-service"))
