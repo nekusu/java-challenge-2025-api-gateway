@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.4</version>
+		<version>3.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sharks</groupId>
@@ -29,6 +29,11 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<sonar.projectKey>java-challenge-2025-api-gateway</sonar.projectKey>
+		<sonar.projectName>java-challenge-2025-api-gateway</sonar.projectName>
+		<sonar.host.url>http://localhost:9000</sonar.host.url>
+		<sonar.coverage.exclusions>**/*.*</sonar.coverage.exclusions>
+		<sonar.token>${env.SONAR_TOKEN}</sonar.token>
 	</properties>
 	<dependencies>
 		<dependency>
